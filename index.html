@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ameya Sanzgiri</title>
+<meta name="author" content="Ameya Sanzgiri">
+<meta name="description" content="Ameya Sanzgiri — security data scientist. Machine learning for threat detection, anomaly detection and privacy. Snowflake; formerly McAfee and Intel.">
+<meta property="og:title" content="Ameya Sanzgiri">
+<meta property="og:description" content="Security data scientist. Machine learning for threat detection, anomaly detection and privacy.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F1F4F3;
+  --panel:#FFFFFF;
+  --ink:#0F1E27;
+  --ink-mid:#3D5764;
+  --ink-soft:#67808B;
+  --rule:#D4DCDB;
+  --rule-soft:#E4EAE9;
+  --signal:#0F6E62;
+  --signal-bg:#E2EEEB;
+  --mark:#9A5E16;
+
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0C161C;
+    --panel:#12212A;
+    --ink:#E6EDEC;
+    --ink-mid:#A9BDC4;
+    --ink-soft:#7C939C;
+    --rule:#243740;
+    --rule-soft:#1B2A33;
+    --signal:#5FCBB8;
+    --signal-bg:#16302E;
+    --mark:#D8A860;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0C161C;
+  --panel:#12212A;
+  --ink:#E6EDEC;
+  --ink-mid:#A9BDC4;
+  --ink-soft:#7C939C;
+  --rule:#243740;
+  --rule-soft:#1B2A33;
+  --signal:#5FCBB8;
+  --signal-bg:#16302E;
+  --mark:#D8A860;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:16px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
+a:hover{border-bottom-color:var(--signal);color:var(--signal)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:saturate(1.4) blur(10px);
+  border-bottom:1px solid var(--rule-soft);
+}
+.topbar-in{
+  max-width:1120px;margin:0 auto;padding:.85rem 1.5rem;
+  display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;
+}
+.wordmark{
+  font-family:"IBM Plex Serif",Georgia,serif;font-weight:600;font-size:1.02rem;
+  letter-spacing:-.01em;border:0;
+}
+.wordmark:hover{color:var(--ink)}
+.topnav{display:flex;gap:1.35rem;font-size:.855rem;color:var(--ink-mid);flex-wrap:wrap}
+.topnav a{border:0;color:var(--ink-mid)}
+.topnav a:hover{color:var(--signal)}
+@media (max-width:620px){.topnav{display:none}}
+
+/* ---------- shell ---------- */
+.shell{max-width:1120px;margin:0 auto;padding:0 1.5rem 5rem;display:grid;gap:3.5rem;grid-template-columns:1fr}
+@media (min-width:900px){
+  .shell{grid-template-columns:274px minmax(0,1fr);gap:4.5rem;padding-top:3.25rem}
+}
+
+/* ---------- sidebar ---------- */
+.side{padding-top:2.75rem}
+@media (min-width:900px){
+  .side{padding-top:0;position:sticky;top:calc(84px + env(safe-area-inset-top,0px));align-self:start;max-height:calc(100vh - 120px);overflow:auto}
+}
+.monogram{
+  width:94px;height:94px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--signal-bg);color:var(--signal);
+  font-family:"IBM Plex Serif",Georgia,serif;font-size:1.9rem;font-weight:600;letter-spacing:.02em;
+  border:1px solid var(--rule);
+}
+.side h1{
+  font-family:"IBM Plex Serif",Georgia,serif;
+  font-size:1.32rem;font-weight:600;letter-spacing:-.015em;
+  margin:1.1rem 0 .3rem;line-height:1.25;
+}
+.side .role{color:var(--ink-mid);font-size:.92rem;margin:0 0 1.15rem;line-height:1.5}
+.meta{list-style:none;margin:0 0 1.6rem;padding:0;font-size:.875rem;color:var(--ink-mid)}
+.meta li{padding:.3rem 0;border-bottom:1px solid var(--rule-soft)}
+.meta li:last-child{border-bottom:0}
+.meta a{border:0;color:var(--ink-mid)}
+.meta a:hover{color:var(--signal)}
+.onpage{border-top:1px solid var(--rule);padding-top:1rem}
+.onpage p{margin:0 0 .55rem;font-size:.78rem;color:var(--ink-soft);font-style:italic}
+.onpage ol{list-style:none;margin:0;padding:0;font-size:.875rem}
+.onpage li{margin:.2rem 0}
+.onpage a{border:0;color:var(--ink-mid);display:block;padding:.1rem 0 .1rem .7rem;border-left:2px solid var(--rule-soft)}
+.onpage a:hover{color:var(--signal);border-left-color:var(--signal)}
+
+/* ---------- hero ---------- */
+.hero{padding-top:2.5rem;border-top:1px solid var(--rule)}
+@media (min-width:900px){.hero{padding-top:0;border-top:0}}
+.hero p.lede{
+  font-family:"IBM Plex Serif",Georgia,serif;
+  font-size:clamp(1.34rem,3.1vw,1.72rem);
+  line-height:1.48;letter-spacing:-.012em;
+  margin:0 0 1.4rem;max-width:33ch;
+}
+.hero p.sub{max-width:62ch;color:var(--ink-mid);margin:0 0 2rem;font-size:1.02rem}
+.trace{display:block;width:100%;max-width:420px;height:auto;margin:0 0 2.25rem;overflow:visible}
+.trace .base{fill:none;stroke:var(--rule);stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
+.trace .peak{fill:none;stroke:var(--signal);stroke-width:1.9;stroke-linejoin:round;stroke-linecap:round}
+.trace .dot{fill:var(--signal)}
+.trace .halo{fill:none;stroke:var(--signal);stroke-width:1;opacity:.4}
+.trace .cap{fill:var(--ink-soft);font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.02em}
+
+/* ---------- sections ---------- */
+section{margin:0 0 3.1rem;scroll-margin-top:calc(80px + env(safe-area-inset-top,0px))}
+section > h2{
+  font-family:"IBM Plex Serif",Georgia,serif;
+  font-size:1.08rem;font-weight:600;letter-spacing:-.005em;
+  margin:0 0 1.15rem;padding-bottom:.5rem;
+  border-bottom:1px solid var(--rule);
+  display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+}
+section > h2 .count{
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:400;
+  color:var(--ink-soft);letter-spacing:.02em;white-space:nowrap;
+}
+section p{max-width:64ch;margin:0 0 .95rem}
+h3{font-family:"IBM Plex Serif",Georgia,serif;font-size:1rem;font-weight:600;margin:1.7rem 0 .4rem}
+h3:first-of-type{margin-top:0}
+.where{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-soft);margin:0 0 .5rem}
+
+/* entries */
+.entries{list-style:none;margin:0;padding:0}
+.entries > li{padding:.85rem 0;border-bottom:1px solid var(--rule-soft)}
+.entries > li:last-child{border-bottom:0}
+.entries .t{display:block;max-width:60ch}
+.entries .d{display:block;font-family:"IBM Plex Mono",monospace;font-size:.755rem;color:var(--ink-soft);margin-top:.25rem}
+.entries .d .no{color:var(--mark)}
+
+/* ask list */
+.ask{list-style:none;margin:0;padding:0;display:grid;gap:.05rem}
+.ask li{padding:.55rem 0 .55rem .95rem;border-left:2px solid var(--rule);max-width:62ch}
+.ask li:hover{border-left-color:var(--signal)}
+
+/* footer */
+footer{
+  max-width:1120px;margin:0 auto;padding:2rem 1.5rem 3rem;
+  border-top:1px solid var(--rule);
+  font-size:.82rem;color:var(--ink-soft);
+  display:flex;gap:1rem;justify-content:space-between;flex-wrap:wrap;
+}
+footer a{border:0;color:var(--ink-soft)}
+footer a:hover{color:var(--signal)}
+.themebtn{
+  background:none;border:1px solid var(--rule);color:var(--ink-soft);
+  font:inherit;font-size:.78rem;padding:.2rem .6rem;border-radius:2px;cursor:pointer;
+}
+.themebtn:hover{border-color:var(--signal);color:var(--signal)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="wordmark" href="#top">Ameya Sanzgiri</a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#built">Built</a>
+      <a href="#track">Track record</a>
+      <a href="#harness">Harnesses</a>
+      <a href="#thesis">Thesis</a>
+      <a href="#next">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="shell" id="top">
+
+  <aside class="side">
+    <div class="monogram" aria-hidden="true">AS</div>
+    <h1>Ameya Sanzgiri</h1>
+    <p class="role">I build security and AI systems from zero to production scale. Currently at Snowflake, leading AI governance, agent security and security detection.</p>
+    <ul class="meta">
+      <li>Fremont, California</li>
+      <li><a href="mailto:ameya.sanz@gmail.com">ameya.sanz@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/ameya-sanzgiri/">LinkedIn</a></li>
+      <li><a href="https://scholar.google.com/citations?user=VbfS-r4AAAAJ">Google Scholar</a></li>
+      <li><a href="#depth">6 granted patents</a></li>
+    </ul>
+    <nav class="onpage" aria-label="On this page">
+      <p>On this page</p>
+      <ol>
+        <li><a href="#built">What I've built</a></li>
+        <li><a href="#depth">Technical depth</a></li>
+        <li><a href="#track">Track record</a></li>
+        <li><a href="#lead">How I run a team</a></li>
+        <li><a href="#harness">Agent harnesses</a></li>
+        <li><a href="#thesis">Where I think this goes</a></li>
+        <li><a href="#next">What I'm looking for</a></li>
+      </ol>
+    </nav>
+  </aside>
+
+  <main class="hero">
+
+    <p class="lede">Fifteen years putting machine learning into production for security — and the last four deciding what to trust when the thing being evaluated is a model.</p>
+
+    <svg class="trace" viewBox="0 0 340 74" role="img" aria-label="A flat telemetry line with a single flagged spike.">
+      <polyline class="base" points="0,52 13,49 26,54 39,50 52,53 65,48 78,53 91,51 104,55 117,50 130,53 143,49 156,54 169,51 182,53 195,50 208,54"/>
+      <polyline class="peak" points="208,54 216,50 224,14 232,48 240,53"/>
+      <polyline class="base" points="240,53 253,50 266,54 279,51 292,53 305,50 318,54 331,51 340,53"/>
+      <circle class="halo" cx="224" cy="14" r="7"/>
+      <circle class="dot" cx="224" cy="14" r="2.6"/>
+      <text class="cap" x="234" y="12">flagged</text>
+    </svg>
+
+    <p class="sub">Ph.D. in computer science, six granted patents, and a consistent pattern of taking systems from a blank page to production at a scale where the engineering and the modelling stop being separable problems. At Snowflake I own both halves of the AI question: the detection models that catch misuse, and the governance architecture that decides whether an AI system ships at all.</p>
+
+    <section id="built">
+      <h2>What I've built <span class="count">zero to production</span></h2>
+      <p>The through-line in my work is systems that had to function without a human defining correctness in advance. That constraint is what makes them interesting, and it's the same constraint that shows up in every AI product being built right now.</p>
+
+      <ul class="entries">
+        <li>
+          <span class="t"><strong>Autonomous data quality engine.</strong> Built from scratch to monitor roughly twenty billion rows a day across 1,100+ sources — with no subject-matter expert per source. At that count you cannot hand-specify what correct looks like, so the system learns each source's shape and flags departures from it.</span>
+          <span class="d"><span class="no">20B rows/day</span> · 1,100+ sources · self-learning</span>
+        </li>
+        <li>
+          <span class="t"><strong>Inline policy enforcement for AI traffic.</strong> A control plane sitting between employees, applications and models: sensitive-data detection and masking in the request path, evaluation against legal, privacy and security standards, auditable record at every gate. Built to EU AI Act and CCPA requirements.</span>
+          <span class="d">20+ AI applications · 10,000+ employees</span>
+        </li>
+        <li>
+          <span class="t"><strong>IoT behavioural anomaly detection.</strong> Device communication modelled from router NetFlow as a time series, with an isolation-forest detector running in production at consumer scale. Paired with a proactive firewall that derives per-device domain allowlists automatically via market basket analysis, accounting for geography and device class.</span>
+          <span class="d"><span class="no">1TB+/day</span> · 3.5M routers · 15M+ devices</span>
+        </li>
+        <li>
+          <span class="t"><strong>Third-party AI validation scanner.</strong> Tests external AI tools across data leakage, prompt injection, policy compliance and access control before they reach the enterprise. Shipped to the Snowflake Marketplace.</span>
+          <span class="d">pre-deployment gate for external AI tooling</span>
+        </li>
+        <li>
+          <span class="t"><strong>LLM evaluation methodology.</strong> Scoring across model reliability, safety and regulatory control enforcement. Snowflake published it externally as customer-facing guidance — the internal standard became a product argument.</span>
+          <span class="d">internal standard → external publication</span>
+        </li>
+        <li>
+          <span class="t"><strong>Behavioural detection suite.</strong> UEBA for insider threat, privilege abuse and compromised accounts across corporate, production and privileged service-account telemetry; network models for beaconing, port scanning and exfiltration; continuous RBAC right-sizing driven by observed access rather than requested access.</span>
+          <span class="d">isolation forests · LSTMs · factorization machines · change-point detection</span>
+        </li>
+      </ul>
+      <p style="margin-top:1.15rem">Across my organisation the shipped portfolio runs to roughly fifty production systems spanning AI platform, security ML, and analytics — enough surface area that the interesting problem becomes prioritisation and reuse rather than any single build.</p>
+    </section>
+
+    <section id="depth">
+      <h2>Technical depth <span class="count">6 granted · more pending</span></h2>
+      <p>Granted US patents spanning anomaly detection, application permission governance, behavioural threat detection and application analysis, with further applications pending.</p>
+      <ul class="entries">
+        <li>
+          <span class="t">Detection of malicious beaconing in virtual private networks</span>
+          <span class="d"><span class="no">US 12,621,313</span> · 2026 · Snowflake</span>
+        </li>
+        <li>
+          <span class="t">Methods and apparatus for detecting anomalous activity of an IoT device</span>
+          <span class="d"><span class="no">US 11,616,795</span> · 2023 · McAfee</span>
+        </li>
+        <li>
+          <span class="t">Methods and apparatus for unknown sample classification using agglomerative clustering</span>
+          <span class="d"><span class="no">US 11,580,220</span> · 2023 · McAfee</span>
+        </li>
+        <li>
+          <span class="t">Methods, systems, articles of manufacture and apparatus to reduce spoofing vulnerabilities</span>
+          <span class="d"><span class="no">US 11,425,165</span> · 2022 · McAfee</span>
+        </li>
+        <li>
+          <span class="t">System and method for application exploration</span>
+          <span class="d"><span class="no">US 11,263,325</span> · 2022 · McAfee</span>
+        </li>
+        <li>
+          <span class="t">Framework to quantify deviations in app permissions using application description</span>
+          <span class="d"><span class="no">US 10,891,380</span> · 2021 · McAfee</span>
+        </li>
+      </ul>
+      <p style="margin-top:1.1rem">Pending applications cover auto-tunable window-based anomaly detection in time series and enterprise SaaS license lifecycle optimisation. Earlier filings include semi-supervised anomaly detection in the consumer home, language-agnostic ransomware identification, and application identification from network and router statistics. Patent records are split across three name variants — Ameya Sanzgiri, Ameya M. Sanzgiri and Ameya Mahesh Sanzgiri — so no single index shows them all; the list above is the consolidated set.</p>
+      <p>My doctoral work at Buffalo asked what an attack costs the person staging it, rather than what it costs the defender to block — malware propagation through social networks, adversary-cost risk assessment, trust models for vehicular networks, multi-path wireless routing. Published at CCS workshops, IEEE VTC, ICNC, and in IEEE Transactions on Computers. <a href="https://scholar.google.com/citations?user=VbfS-r4AAAAJ">Google Scholar</a>.</p>
+    </section>
+
+    <section id="track">
+      <h2>Track record</h2>
+      <ul class="entries">
+        <li>
+          <span class="t"><strong>Snowflake</strong> — Grew a five-person detection team into an eight-person organisation owning AI governance, security for AI, ML for security, and enterprise data governance.</span>
+          <span class="d">2021 &ndash; present</span>
+        </li>
+        <li>
+          <span class="t"><strong>McAfee, formerly Intel</strong> — Research Data Scientist, Mobile and IoT Security. Detection research at consumer scale; nine patents filed.</span>
+          <span class="d">2015 &ndash; 2021 · Santa Clara</span>
+        </li>
+        <li>
+          <span class="t"><strong>University of Memphis</strong> — Research Assistant Professor. Android application fuzzer driving full code coverage for security analysis.</span>
+          <span class="d">2015 · Memphis</span>
+        </li>
+        <li>
+          <span class="t"><strong>McAfee</strong> — Mobile Security Research. Automated privacy-leak detection for Android apps and third-party SDKs; install-time privacy scoring.</span>
+          <span class="d">2014 &ndash; 2015</span>
+        </li>
+        <li>
+          <span class="t"><strong>Intel</strong> — Research Intern. Statistical analysis of cryptographic algorithm performance on new processors.</span>
+          <span class="d">2011 &ndash; 2012</span>
+        </li>
+        <li>
+          <span class="t"><strong>Infosys</strong> — Senior Software Engineer, EMEA.</span>
+          <span class="d">2004 &ndash; 2006 · Bangalore</span>
+        </li>
+      </ul>
+      <p style="margin-top:1.1rem">Ph.D. Computer Science, University at Buffalo (2014). B.S. Electrical Engineering, SJCE Mysore (2004). Speaking: Snowflake Summit 2024; Data Cloud World Tour 2023, Chicago and Toronto.</p>
+    </section>
+
+    <section id="lead">
+      <h2>How I run a team</h2>
+      <p>I lead a globally distributed team of eight, including two managers, and own the budget and vendor strategy for the governance tooling stack. I report outcomes quarterly to the CISO and CIO.</p>
+      <p>The organisational design I keep returning to is a narrow ownership boundary with real teeth: engineering teams own development and remediation, my team owns the checkpoint. That split works because it avoids the failure mode where a central team becomes a bottleneck everyone resents, and it only works if the checkpoint is fast. So I automated our own function first — AI-assisted tooling for application security review, vendor assessment and threat modelling now handles around twenty reviews a quarter and cut manual effort roughly 80%, and a compliance assistant built with Internal Audit cut audit effort about 60%.</p>
+      <p>Beyond the team: cross-functional authority across Legal, Compliance, Privacy, Data Platform, Security, Enterprise Risk and Internal Audit — which in practice means resolving competing priorities between groups with genuinely different incentives. I led technical due diligence on the acquisition of an agentic AI governance platform, defining control requirements across Security, Engineering and Finance, and have made build-versus-buy calls against a real budget after evaluating the field.</p>
+    </section>
+
+    <section id="harness">
+      <h2>Agent harnesses <span class="count">design · evaluation · guardrails</span></h2>
+      <p>Our internal agent runtime — orchestration, a tool and MCP registry, context and state management — was built by a partner team. I was part of the technical evaluation and design: what the registry had to enforce, where state could be trusted, which failure modes the architecture had to make structurally impossible rather than merely unlikely.</p>
+      <p>What I own is the layer that constrains it. An evaluation platform for vulnerabilities in agentic applications. An adversarial module that red-teams agents against prompt injection and jailbreak-style attacks, which I've run against production agentic surfaces before release. Inline policy enforcement in the request path, out-of-band prompt monitoring, and the pre-deployment scanner for external AI tooling described above. Plus response analysis that scores each lifecycle stage separately — query, retrieval, generation, answer.</p>
+      <p>That last detail is the one I'd argue hardest for. Most evaluation grades the final answer, which tells you that something went wrong but not where. Scoring each stage tells you whether the retrieval was thin, the generation overreached, or the plan was wrong from the first step — and those need completely different fixes.</p>
+
+      <h3>Evidence first, then action</h3>
+      <p>My working principle is that an agent should not be able to assert or act on anything it cannot point at. An unsourced claim isn't a stylistic weakness, it's a failure of the run, and the harness should treat it that way — surfacing the retrieval that justified each step, and stopping rather than proceeding when the evidence underneath a decision is thin. A system that guesses confidently is worse than one that halts, because the first kind erodes trust in every output it ever produced, including the correct ones.</p>
+
+      <h3>Using the trace to decide where to look</h3>
+      <p>This one is a design position rather than a shipped system — I haven't built it, and I want to be precise about what I think it can and can't do.</p>
+      <p>The appealing version is that an agent's execution trace tells you whether to trust its answer. I don't think that holds. A trace can look impeccable — good documents retrieved, every planned tool called, nothing retried — while the model quietly conflates two entities or misreads a figure. That may well be the most common real failure, and it leaves no mark on the trace at all. Timing is worse than useless as a proxy: latency is dominated by caching and provider variance, so scoring on it would penalise every optimisation the platform makes.</p>
+      <p>What the trace is good for is triage. Verification that actually works — checking each claim against a supporting span in the retrieved context — is far too expensive to run on everything. So the useful question isn't "is this answer true," it's "where should the expensive check go." A triage signal is allowed to be noisy in a way a confidence score isn't, and that difference is the whole design.</p>
+      <p>Three things I'd route on. An agent that absorbed a failure silently — a tool errored or came back empty and the run continued without acknowledging the gap — which is a genuine defect regardless of whether the output happens to be right. An answer asserting things on a task type that should have required grounding, where little or nothing was retrieved. And claims inherited across a handoff that arrive carrying no evidence of their own.</p>
+      <p>That last one is the failure I'd worry about most in multi-agent systems, and it's the piece I'd build first. Call it laundering: agent A guesses, agent B receives the guess as a plain fact, and by agent C it's load-bearing and unattributable. Uncertainty has to be inherited at the handoff rather than dropped, and abstention has to be a first-class outcome the system is rewarded for.</p>
+      <p>The method comes from work I've already done: fingerprinting applications from packet sizes, inter-arrival times and communication patterns without decrypting anything, and modelling device behaviour from NetFlow as a time series. An agent run has a comparable structure. I'd expect the transfer to be partial — agent task types are heterogeneous and shift under every model upgrade, where NetFlow gave you stationary behaviour across millions of devices — which is another reason to aim this at routing attention rather than at rendering verdicts.</p>
+
+      <h3>Keeping harnesses from going overboard</h3>
+      <p>The characteristic failure of agentic systems isn't that they refuse to work. It's that they keep going — widening scope, taking adjacent actions nobody asked for, chaining tool calls until something breaks in a way that's expensive to unwind. The instinct to fix this with better prompting is the wrong instinct. Prompt-level instruction is advisory; anything you actually need to hold belongs in the runtime, where the agent cannot argue with it.</p>
+      <ul class="ask">
+        <li><strong>Capability is scoped per task, not per agent.</strong> The tool registry is a control point, not a directory — access granted narrowly and for the duration of the work, so a compromised or confused agent inherits a small surface rather than the union of everything it might ever need.</li>
+        <li><strong>Guardrails sit in the request path.</strong> Sensitive-data detection, masking and policy evaluation run inline, where they apply regardless of what the model was persuaded to believe.</li>
+        <li><strong>Blast radius is bounded by construction.</strong> Step and cost budgets, explicit stop conditions, and a hard checkpoint before anything irreversible. Reversibility is a design property, not an operational hope.</li>
+        <li><strong>Refusing to act is a valid outcome.</strong> Harnesses that cannot stop will not stop. Halting on insufficient evidence has to be a first-class result the system is rewarded for, not an error state it learns to route around.</li>
+        <li><strong>The harness is the audit log.</strong> Every step leaves a record at the point it happens, because evidence reconstructed after an incident is evidence nobody trusts.</li>
+        <li><strong>Friction has a budget too.</strong> Controls that make the sanctioned path slower than the workaround don't get followed, they get bypassed — which is why enforcement has to be measured on latency alongside coverage.</li>
+      </ul>
+      <p>Those principles aren't theoretical caution. They're what I concluded from running adversarial testing against production agentic surfaces and watching which failures were recoverable and which weren't.</p>
+    </section>
+
+    <section id="thesis">
+      <h2>Where I think this goes</h2>
+      <p>Every enterprise now has AI systems in production that nobody can fully characterise. The gap between what a model can do and what an organisation can prove about it is widening, and almost all of the current tooling addresses that gap with documentation rather than enforcement.</p>
+      <p>I think that's backwards, and I've built the other version. Controls that live in a policy document get routed around within a quarter. Controls that sit inline in the request path — masking, evaluating, recording — survive, provided they don't make the tool slower than the workaround. The hard engineering problem is doing that at latency budgets people will tolerate, which is a systems problem more than a policy one.</p>
+      <p>The second thing I believe is what pulled me toward harnesses rather than models: as systems become agentic, the attack surface moves off the model and onto the connective tissue — tool registries, context handling, inter-agent trust, the protocols between them. That surface behaves like the network security problems I spent a decade on, and very little like prompt engineering. The teams that do well here will be staffed by people who have run detection and containment at scale, not by people who arrived with the current wave.</p>
+      <p>Both of these are markets. I've built a production answer to the first, and I own the constraint layer for the second — inside a company where the cost of being wrong was measured in regulatory exposure rather than churn.</p>
+    </section>
+
+    <section id="next">
+      <h2>What I'm looking for</h2>
+      <p>I'm interested in founding or joining an early technical team building the infrastructure agents run on — harnesses, the enforcement and evidence layer, agent and tool-protocol security, or evaluation. The systems that let companies deploy agents they can actually account for. I'm most useful where the problem needs someone who can do the modelling, make the architecture call, and then own the org that ships it.</p>
+      <p>If you're an investor, a founder looking for a technical counterpart, or building in this space — <a href="mailto:ameya.sanz@gmail.com">ameya.sanz@gmail.com</a>.</p>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <span>Ph.D. Computer Science, University at Buffalo, 2014 · B.S. Electrical Engineering, SJCE Mysore, 2004</span>
+  <button class="themebtn" id="themebtn" type="button">Switch theme</button>
+</footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('themebtn');
+  var root=document.documentElement;
+  function current(){
+    if(root.dataset.theme) return root.dataset.theme;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  }
+  try{
+    var saved=localStorage.getItem('theme');
+    if(saved==='dark'||saved==='light') root.dataset.theme=saved;
+  }catch(e){}
+  btn.addEventListener('click',function(){
+    var next=current()==='dark'?'light':'dark';
+    root.dataset.theme=next;
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
