@@ -257,6 +257,10 @@ footer a:hover{color:var(--signal)}
 
       <ul class="entries">
         <li>
+          <span class="t"><strong>Dangerous agent activity detection.</strong> A guardrail that reads a whole agent trajectory rather than a single prompt. A lightweight model screens every run and only the flagged ones escalate to a deeper reasoning model, which keeps the expensive analysis where it is needed. It separates agent overreach from user-directed misuse across cyber, biological and enterprise-policy threat domains, and returns supporting evidence and a rationale with each decision. In production internally, and scheduled for preview in Snowflake's Cortex AI Gateway.</span>
+          <span class="d"><span class="no">18,000 trajectories/day</span> &middot; under 0.2% flagged &middot; two-stage escalation</span>
+        </li>
+        <li>
           <span class="t"><strong>Autonomous data quality engine.</strong> Built from scratch to monitor roughly twenty billion rows a day across 1,100+ sources, with no subject-matter expert per source. At that count you cannot hand-specify what correct looks like, so the system learns each source's shape and flags departures from it.</span>
           <span class="d"><span class="no">20B rows/day</span> · 1,100+ sources · self-learning</span>
         </li>
@@ -359,6 +363,8 @@ footer a:hover{color:var(--signal)}
       <h2>Agent harnesses <span class="count">design · evaluation · guardrails</span></h2>
       <p>Our internal agent runtime (orchestration, a tool and MCP registry, context and state management) was built by a partner team. I was part of the technical evaluation and design: what the registry had to enforce, where state could be trusted, which failure modes the architecture had to make structurally impossible rather than merely unlikely.</p>
       <p>What I own is the layer that constrains it. An evaluation platform for vulnerabilities in agentic applications. An adversarial module that red-teams agents against prompt injection and jailbreak-style attacks, which I've run against production agentic surfaces before release. Inline policy enforcement in the request path, out-of-band prompt monitoring, and the pre-deployment scanner for external AI tooling described above. Plus response analysis that scores each lifecycle stage separately: query, retrieval, generation, answer.</p>
+      <p>The newest part of that layer is public. With two colleagues I published Dangerous Agent Activity Detection on the Snowflake engineering blog in October 2026, describing the two-stage engine above and what it caught. In a trial against roughly 12,000 trajectories from engineering staff it flagged three people; one was a rogue agent that had killed processes for every user of a shared cloud workspace, and the other two were developers whose work resembled network enumeration. Authorisation scope and organisational role were what separated the real finding from the noise. The system now runs on about 18,000 internal trajectories a day. <a href="https://www.snowflake.com/en/blog/engineering/ai-agent-dangerous-activity-detection/">Read the post</a>.</p>
+
       <p>I'd argue hardest for the stage scoring. Most evaluation grades the final answer, which tells you that something went wrong but not where. Scoring each stage tells you whether the retrieval was thin, the generation overreached, or the plan was wrong from the first step, and each of those needs a different fix.</p>
 
       <h3>Evidence first, then action</h3>
