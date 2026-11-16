@@ -253,7 +253,7 @@ footer a:hover{color:var(--signal)}
 
     <section id="built">
       <h2>Systems I've built <span class="count">zero to production</span></h2>
-      <p>The through-line in my work is systems that had to function without needing a human to define correctness in advance. Most AI products being built now face the same constraint.</p>
+      <p>The through-line in my work is systems that had to function without needing a human to define correctness in advance. Most AI products being built now face the same constraint and follow a similar philosophy.</p>
 
       <ul class="entries">
         <li>
@@ -283,6 +283,7 @@ footer a:hover{color:var(--signal)}
       </ul>
       <p style="margin-top:1.15rem">Across my organisation the shipped portfolio runs to roughly fifty production systems spanning AI platform, security ML, and analytics. At that size the harder problem is prioritisation and reuse rather than any single build.</p>
     </section>
+
     <section id="depth">
       <h2>Technical depth <span class="count">6 granted · more pending</span></h2>
       <p>Granted US patents spanning anomaly detection, application permission governance, behavioural threat detection and application analysis, with further applications pending.</p>
@@ -355,14 +356,14 @@ footer a:hover{color:var(--signal)}
 
     <section id="harness">
       <h2>Agent harnesses <span class="count">design · evaluation · guardrails</span></h2>
-      <p>I build harnesses and then build on them. My team and I designed and built an agent that scans internal repositories and container images for exploitable vulnerabilities and then chooses its level of intervention: it writes the fix where we own the code, raises a pull request where the change needs an owner's review, or files a ticket or an advisory for a container image where there is no code of ours to change. This harness runs on demand.</p>
+      <p>I build harnesses and then build on them. My team and I designed and built an agent harness that scans internal repositories and container images for exploitable vulnerabilities and then chooses its level of intervention: it writes the fix where we own the code, raises a pull request where the change needs an owner's review, or files a ticket or an advisory for a container image where there is no code of ours to change. This harness runs on demand.</p>
       <p>On the same foundation we built abuse detection for three cases: suspicious free-trial signups, misuse of AI through those trial accounts, and container workloads turned to abuse such as crypto mining. Those detections run continuously, across roughly 1,000 trial accounts a day.</p>
-      <p>The shared internal agent runtime, which covers orchestration, a tool and MCP registry, and context and state management, was built by a partner team. I worked on its design and evaluation: what the registry needed to enforce, where state could be trusted, and which failure modes the architecture had to rule out by construction. My team and I also defined how the system would be evaluated, and where evidence had to be captured so that every step could be traced back to it.</p>
+      <p>The shared internal agent runtime, which covers orchestration, a tool and MCP registry, and context and state management, was co-built with a partner team. I worked on its design and evaluation: what the registry needed to enforce, where state could be trusted, and which failure modes the architecture had to rule out by construction. My team and I also defined how the system would be evaluated, and where evidence had to be captured so that every step could be traced back to it.</p>
       <p>I also own the constraint layer around it: an evaluation platform for vulnerabilities in agentic applications, an adversarial module that red-teams agents against prompt injection and jailbreak-style attacks, inline policy enforcement in the request path, out-of-band prompt monitoring, and a pre-deployment scanner for external AI tooling. The adversarial testing has run against production agentic surfaces before release.</p>
       <p>The layer also does stage scoring: instead of grading a run on its final output, it scores the query, the retrieval, the generation and the answer on their own, so a failure has a location. I'd argue hardest for that part. Most evaluation grades the final answer, which tells you that something went wrong but not where. Scoring each stage tells you whether the request was misread, the retrieval was thin, or the generation overreached, and each of those needs a different fix.</p>
 
       <h3>Evidence first, then action</h3>
-      <p>My working principle is that an agent should not be able to assert or act on anything it cannot point at. An unsourced claim is a failure of the run, and the harness should treat it that way, surfacing the retrieval that justified each step, and stopping rather than proceeding when the evidence underneath a decision is thin. A system that guesses confidently does more damage than one that halts, because once it's caught guessing, people stop trusting its correct outputs too.</p>
+      <p>My working principle when building AI systems is that an agent should not be able to assert or act on anything it cannot point to. An unsourced claim is a failure of the run, and the harness should treat it that way, surfacing the retrieval that justified each step, and stopping rather than proceeding when the evidence underneath a decision is thin. A system that guesses confidently does more damage than one that halts, because once it's caught guessing, people stop trusting its correct outputs too.</p>
 
       <h3>Keeping harnesses from going overboard</h3>
       <p>Agentic systems usually fail by continuing: widening scope, taking adjacent actions nobody asked for, chaining tool calls until something breaks in a way that's expensive to unwind. Better prompting won't fix this, because prompt-level instruction is advisory; anything you actually need to hold belongs in the runtime, where the agent cannot argue with it.</p>
@@ -380,7 +381,7 @@ footer a:hover{color:var(--signal)}
       <h3>Catching the ones that get through</h3>
       <p>Prevention fails eventually, so a harness has to prove what actually happened. That means the outcome has to be verified independently of the agent: a separate check reads the post-state from the source systems rather than from the agent's own record, because a 200 from an API proves the call was made, not that the change happened.</p>
       <p>Verification only covers what the harness itself executed, so there also needs to be a detection layer over the trajectories. A two-stage pipeline can do that. With two colleagues I published Dangerous Agent Activity Detection on the Snowflake engineering blog in October 2026. In a trial against roughly 12,000 trajectories from engineering staff it flagged three people, and one was a rogue agent that had killed processes for every user of a shared cloud workspace. One of our main findings was that enterprise context decides it: understanding authorisation scope and organisational role was what separated the real finding from the noise.</p>
-      <p>What the trace is good for is triage: the checks that work are expensive, matching a claim to a supporting span for something asserted and observing the post-state for something done, and neither can run on every run. So the trace should decide where that check goes rather than whether the run was correct, which lets the signal be noisy in a way a confidence score cannot. I'd argue that one should route on four things: a tool that errored or came back empty while the run continued anyway; a divergence between what a tool returned and what the agent said it returned; an action taken against a target nothing in the run established; and a claim inherited across a handoff with no evidence of its own.</p>
+      <p>What the traces are good for is triage: the checks that work are expensive, matching a claim to a supporting span for something asserted and observing the post-state for something done, and neither can run on every run. So the traces should decide where that check goes rather than whether the run was correct, which lets the signal be noisy in a way a confidence score cannot. I'd argue that one should route on four things: a tool that errored or came back empty while the run continued anyway; a divergence between what a tool returned and what the agent said it returned; an action taken against a target nothing in the run established; and a claim inherited across a handoff with no evidence of its own.</p>
     </section>
 
     <section id="thesis">
