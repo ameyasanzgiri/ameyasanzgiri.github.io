@@ -111,7 +111,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
   background:var(--signal-bg);color:var(--signal);
   font-family:"IBM Plex Serif",Georgia,serif;font-size:1.9rem;font-weight:600;letter-spacing:.02em;
   border:1px solid var(--rule);
+  overflow:hidden;
 }
+.monogram img{width:100%;height:100%;object-fit:cover;display:block}
 .side h1{
   font-family:"IBM Plex Serif",Georgia,serif;
   font-size:1.32rem;font-weight:600;letter-spacing:-.015em;
@@ -212,7 +214,7 @@ footer a:hover{color:var(--signal)}
 <div class="shell" id="top">
 
   <aside class="side">
-    <div class="monogram" aria-hidden="true">AS</div>
+    <div class="monogram"><img src="me.jpg" alt="Ameya Sanzgiri" width="94" height="94"></div>
     <h1>Ameya Sanzgiri</h1>
     <p class="role">I build security and AI systems from zero to production scale. Currently at Snowflake, leading AI governance, agent security and security detection.</p>
     <ul class="meta">
